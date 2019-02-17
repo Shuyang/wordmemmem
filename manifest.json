@@ -1,0 +1,20 @@
+{
+    "name": "Wordmemmem",
+    "version": "0.0",
+    "description": "词咩咩",
+    "permissions": [
+        "declarativeContent",
+        "storage",
+        "tabs"
+    ],
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": true
+    },
+    "chrome_url_overrides" : {
+        "newtab": "flashcards.html"
+    },
+    "browser_action": {},
+    "options_page": "options.html",
+    "manifest_version": 2
+  }
