@@ -5,7 +5,7 @@
     "permissions": [
         "declarativeContent",
         "storage",
-        "tabs"
+        "history"
     ],
     "background": {
         "scripts": ["background.js"],

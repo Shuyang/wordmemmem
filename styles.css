@@ -1,0 +1,14 @@
+.card {
+    padding: 10px;
+}
+
+.word {
+    font-size: large;
+}
+
+.flat-button {
+    border: none;
+    padding: 0;
+    background: none;
+}
+  
