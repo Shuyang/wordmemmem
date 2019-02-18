@@ -6,24 +6,37 @@ function show_cards(result) {
     word_record_array.forEach(function(word_record) {
         let word = word_record[0];
         let time_ago = timeago.format(new Date(word_record[1].last_visit_time));
+        let url = word_record[1].url;
         let card = $(`
         <div class="card">
-            <div class="word">
-                ${word}
+            <div class="left">
+                <div class="word">
+                    ${word}
+                </div>
+                <div>
+                    ${time_ago} 
+                </div>
             </div>
-            <div>
-                ${time_ago}
+            <div class="right">
+                <a href="${url}"><img src="icons/external-link-alt.svg" class="icon"/></a>
             </div>
         </div>`);
+        let right = card.find(".right").hide()
         let delete_button = $(`
-            <button class="delete-button">
-                &#10006;
-            </button>
+            <img src="icons/trash-alt.svg" class="icon"/>
         `).click(function(){
             card.hide();
             chrome.storage.local.remove(word);
         });
-        delete_button.appendTo(card);
+        delete_button.appendTo(right);
+        card.hover(
+            function(){
+                right.fadeIn(10);
+            },
+            function(){
+                right.fadeOut(50);
+            }
+        );
         card.appendTo("#cardsDiv");
         
     });

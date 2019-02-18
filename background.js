@@ -16,13 +16,13 @@ function update_record(word, history_item, result) {
     var word_record = result[word] ;
     if (word_record != undefined) {
         word_record.visit_count++;
-        word_record.last_visit_time = history_item.lastVisitTime;
     } else {
         word_record = {
-            'last_visit_time': history_item.lastVisitTime,
             'visit_count': history_item.visitCount,
         }
     }
+    word_record.last_visit_time = history_item.lastVisitTime;
+    word_record.url = history_item.url
     save_object = {};
     save_object[word] = word_record;
     chrome.storage.local.set(save_object);
