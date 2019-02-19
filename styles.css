@@ -1,4 +1,4 @@
-#cardsDiv {
+.page {
     padding:50px;
 }
 
@@ -46,3 +46,17 @@
 .icon:hover {
     transform: scale(1.2);
 }
+
+th {
+    text-align: left;
+}
+th, td {
+    padding: 5px 20px 5px 0;
+}
+
+textarea{
+    margin: 10px 0px;
+}
+
+
+

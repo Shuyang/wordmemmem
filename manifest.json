@@ -8,8 +8,8 @@
         "history"
     ],
     "background": {
-        "scripts": ["background.js"],
-        "persistent": true
+        "scripts": ["core.js", "background.js"],
+        "persistent": false
     },
     "chrome_url_overrides" : {
         "newtab": "flashcards.html"

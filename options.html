@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      button {
-        height: 30px;
-        width: 30px;
-        outline: none;
-        margin: 10px;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="buttonDiv">
-    </div>
-    <div>
-      <p>Choose a different background color!</p>
-    </div>
-  </body>
-  <script src="options.js"></script>
+    <head>
+        <title>Wordmemmem</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="page">
+            <h1>Options</h1>
+
+            <h2>Control</h2>
+            <button id="load_history"> Load from history </button>
+            <button id="remove_all"> Remove all </button>
+
+            <h2>RegExp</h2>
+            <table id='regex_table'></table>
+            <textarea rows="10" cols="100" id="regex_text"></textarea>
+            <br>
+            <button id="save_regex">save</button>
+            <span id='wrong_format'>Wrong format!</span>
+
+        </div>
+    </body>
+    <script src="core.js"></script>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="options.js"></script>
 </html>

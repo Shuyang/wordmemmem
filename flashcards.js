@@ -5,20 +5,21 @@ function show_cards(result) {
     })
     word_record_array.forEach(function(word_record) {
         let word = word_record[0];
+        let word_display = decodeURIComponent(word);
         let time_ago = timeago.format(new Date(word_record[1].last_visit_time));
         let url = word_record[1].url;
         let card = $(`
         <div class="card">
             <div class="left">
                 <div class="word">
-                    ${word}
+                    ${word_display}
                 </div>
                 <div>
                     ${time_ago} 
                 </div>
             </div>
             <div class="right">
-                <a href="${url}"><img src="icons/external-link-alt.svg" class="icon"/></a>
+                <a href="${url}"><img src="icons/link.svg" class="icon"/></a>
             </div>
         </div>`);
         let right = card.find(".right").hide()
