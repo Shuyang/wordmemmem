@@ -1,4 +1,4 @@
-# wordmemmem
+# wordmemmem 词们们
 
 A chrome extension for vocabulary building.
 * Create vocabulary flashcards based on your web history on dictionary sites (dicitonary.com, google define etc.)
