@@ -1,7 +1,7 @@
 {
     "name": "Wordmemmem",
     "version": "0.0",
-    "description": "词咩咩",
+    "description": "Vocabulary flashcards from your web history",
     "permissions": [
         "declarativeContent",
         "storage",
