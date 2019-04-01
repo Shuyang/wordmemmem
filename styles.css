@@ -1,11 +1,16 @@
 .page {
     padding:75px 150px;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
 }
 
 .card {
-    width: 400px;
+    min-width: 450px;
     height: 90px;
     padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
 }
 .card:hover{
     box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.2);
@@ -13,13 +18,10 @@
 
 .left {
     float: left;
-    width: 200px;
 }
 
 .right {
     float: right;
-    width: 80px;
-    height: 90px;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
@@ -29,6 +31,7 @@
 .word {
     font-size: 36pt;
     margin-bottom: 5px;
+    white-space: nowrap;
 }
 
 .flat-button {
