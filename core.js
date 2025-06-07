@@ -1,14 +1,26 @@
-let regexes;
+let regexes = [];
 
 // Initialize regexes
 chrome.storage.sync.get("regexes", function(result) { 
-    regexes = result.regexes.map(x => new RegExp(x.regex));
+    if (result && result.regexes) {
+        regexes = result.regexes.map(x => new RegExp(x.regex));
+    } else {
+        // Fallback to default regexes if none are found
+        const default_regexes = [
+            {name: "dictionary.com", regex: "https://www.dictionary.com/browse/([^?&]+)"}, 
+            {name: "google dobs", regex: "https://www.google.com/search.*#dobs=(.+)"},
+            {name: "google define", regex: "https://www.google.com/search\\?q=define\\+([^&?]+)"},
+            {name: "merriam-webster", regex: "https://www.merriam-webster.com/dictionary/([^?&]+)"},
+            {name: "youdao.com/search", regex: "http://dict.youdao.com/search\\?q=([^&?]+)"},
+            {name: "youdao.com/w", regex: "http://dict.youdao.com/w/([^/?&]+)/"},
+        ];
+        regexes = default_regexes.map(x => new RegExp(x.regex));
+        // Save default regexes
+        chrome.storage.sync.set({regexes: default_regexes});
+    }
 });
 
 export function get_word(url) {
-    let url_parser =  document.createElement('a');
-    url_parser.href = url;
-    let hostname = url_parser.hostname;
     let word;
 
     regexes.forEach(regex => {
@@ -31,7 +43,7 @@ export function update_record(word, history_item, result) {
     }
     word_record.last_visit_time = history_item.lastVisitTime;
     word_record.url = history_item.url;
-    save_object = {};
+    const save_object = {};
     save_object[word] = word_record;
     chrome.storage.local.set(save_object);
 }

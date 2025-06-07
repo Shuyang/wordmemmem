@@ -1,3 +1,5 @@
+import { process_history_item } from './core.js';
+
 $("#remove_all").click(function() {
     chrome.storage.local.clear();
 });

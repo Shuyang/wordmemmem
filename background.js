@@ -11,14 +11,7 @@ chrome.action.onClicked.addListener(function (tab) {
 
 // Initialize on installation
 chrome.runtime.onInstalled.addListener(function(){
-    const init_regexes = [
-        {name: "dictionary.com", regex: "https://www.dictionary.com/browse/([^?&]+)"}, 
-        {name: "google dobs", regex: "https://www.google.com/search.*#dobs=(.+)"},
-        {name: "google define", regex: "https://www.google.com/search\\?q=define\\+([^&?]+)"},
-        {name: "merriam-webster", regex: "https://www.merriam-webster.com/dictionary/([^?&]+)"},
-        {name: "youdao.com/search", regex: "http://dict.youdao.com/search\\?q=([^&?]+)"},
-        {name: "youdao.com/w", regex: "http://dict.youdao.com/w/([^/?&]+)/"},
-    ]
-    chrome.storage.sync.set({regexes: init_regexes});
+    // Any other initialization can go here
+    console.log('Extension installed');
 });
 
