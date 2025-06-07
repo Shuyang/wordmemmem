@@ -12,21 +12,41 @@
             <h2>Control</h2>
             <div class="control-section">
                 <div class="button-group">
-                    <button id="load_history" class="modern-button">Load from History</button>
+                    <div class="button-container">
+                        <button id="load_history">Load history</button>
+                        <span id="load_history_status" class="status-label"></span>
+                    </div>
                     <p class="button-description">Scan your Chrome history for dictionary lookups. This may take a while depending on your history size.</p>
                 </div>
                 <div class="button-group">
-                    <button id="remove_all" class="modern-button danger">Clear All Words</button>
-                    <p class="button-description">Permanently delete all saved words and their history. This action cannot be undone.</p>
+                    <div class="button-container">
+                        <button id="remove_all">Clear words</button>
+                        <span id="remove_all_status" class="status-label"></span>
+                    </div>
+                    <p class="button-description"> Delete all saved words. This action cannot be undone. This will not affect your Chrome history.</p>
                 </div>
             </div>
             <br>
             <h2>Rules</h2>
-            <table id='regex_table'></table>
-            <textarea rows="10" cols="100" id="regex_text"></textarea>
-            <br>
-            <button id="save_regex" class="modern-button">Save Rules</button>
-            <span id='wrong_format'>Wrong format!</span>
+            <div id="rules_container">
+                <div id="rules_header">
+                    <span class="rule-delete-header"></span>
+                    <span class="rule-name-header">Name</span>
+                    <span class="rule-regex-header">Regular Expression</span>
+                    <span class="rule-status-header"></span>
+                </div>
+                <div id="rules_list"></div>
+                <div class="add-rule-container">
+                    <button id="add_rule" type="button">+ Add Rule</button>
+                </div>
+            </div>
+            
+            <h3>Batch editing witn JSON (for advanced users)</h3>
+            <textarea rows="12" cols="100" id="regex_text" placeholder="Edit rules in JSON format..."></textarea>
+            <div class="batch-edit-buttons">
+                <button id="save_json" type="button">Save JSON</button>
+                <span id="auto_save_status" class="status-label"></span>
+            </div>
         </div>
     </body>
     <script src="jquery-3.3.1.min.js"></script>

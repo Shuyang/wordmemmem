@@ -2,7 +2,7 @@
     padding:75px 150px;
     display: flex;
     flex-direction: column;
-    align-items:flex-start;
+    align-items:stretch;
 }
 
 .card {
@@ -94,7 +94,7 @@ hr {
 }
 
 button {
-    padding: 8px 16px;
+    padding: 4px 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     background-color: white;
@@ -103,6 +103,8 @@ button {
     cursor: pointer;
     transition: all 0.2s ease;
     width: fit-content;
+    min-width: 120px;
+    position: relative;
 }
 
 button:hover {
@@ -110,12 +112,152 @@ button:hover {
     border-color: #ccc;
 }
 
+button:active {
+    background-color: #e0e0e0;
+    border-color: #aaa;
+    transform: translateY(1px);
+}
+
+button:disabled {
+    background-color: #f9f9f9;
+    color: #999;
+    cursor: not-allowed;
+    border-color: #ddd;
+}
+
 .button-description {
     color: #666;
     font-size: 14px;
     margin: 0;
-    max-width: 400px;
 }
 
+.button-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    min-width: 80px;
+}
+
+#rules_container {
+    margin: 20px 0;
+}
+
+#rules_header {
+    display: grid;
+    grid-template-columns: 40px 150px 1fr 120px;
+    max-width: 1000px;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+    font-weight: 500;
+    color: #333;
+}
+
+.rule-row {
+    display: grid;
+    grid-template-columns: 40px 150px 1fr 120px;
+    max-width: 1000px;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    align-items: center;
+}
+
+.rule-name-input,
+.rule-regex-input {
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.rule-name-input {
+    width: 100%;
+}
+
+.rule-regex-input {
+    width: 100%;
+    font-family: monospace;
+}
+
+.add-rule-container {
+    margin-top: 15px;
+}
+
+#add_rule {
+    background-color: #f8f9fa;
+    border: 1px dashed #ccc;
+    color: #666;
+}
+
+#add_rule:hover {
+    background-color: #e9ecef;
+    border-color: #aaa;
+}
+
+h3 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+#regex_text {
+    width: 100%;
+    max-width: 1000px;
+    min-height: 200px;
+    font-family: monospace;
+    font-size: 13px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 8px;
+    resize: vertical;
+}
+
+.batch-edit-buttons {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.batch-edit-buttons button {
+    min-width: 100px;
+}
+
+.rule-status {
+    font-size: 12px;
+    font-weight: 500;
+    min-height: 16px;
+}
+
+.rule-status.valid {
+    color: #2ecc71;
+    font-size: 14px;
+}
+
+.rule-status.error {
+    color: #e74c3c;
+}
+
+.delete-rule-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.delete-rule-icon:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
 
 

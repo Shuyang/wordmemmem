@@ -10,15 +10,15 @@ function show_cards(result) {
         let url = word_record[1].url;
         let card = $(`
         <div class="card">
-            <div class="word">
-                ${word_display}
-            </div>
+                <div class="word">
+                    ${word_display}
+                </div>
             <div class="bottom">
                 <div class="left">
-                    ${time_ago}
-                </div>
-                <div class="right">
-                    <a href="${url}"><img src="icons/link.svg" class="icon"/></a>
+                    ${time_ago} 
+            </div>
+            <div class="right">
+                <a href="${url}"><img src="icons/link.svg" class="icon"/></a>
                 </div>
             </div>
         </div>`);

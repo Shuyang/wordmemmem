@@ -3,7 +3,7 @@ let regexes = [];
 // Initialize regexes
 chrome.storage.sync.get("regexes", function(result) { 
     if (result && result.regexes) {
-        regexes = result.regexes.map(x => new RegExp(x.regex));
+    regexes = result.regexes.map(x => new RegExp(x.regex));
     } else {
         // Fallback to default regexes if none are found
         const default_regexes = [
