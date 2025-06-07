@@ -6,17 +6,26 @@
     </head>
     <body>
         <div class="page">
-            <h1>Options</h1>
+            <h1>Wordmeme</h1>
             <hr>
+            <h1>Settings and Controls</h1>
             <h2>Control</h2>
-            <button id="load_history"> Load from history </button>
-            <button id="remove_all"> Remove all </button>
-            <hr>
+            <div class="control-section">
+                <div class="button-group">
+                    <button id="load_history" class="modern-button">Load from History</button>
+                    <p class="button-description">Scan your Chrome history for dictionary lookups. This may take a while depending on your history size.</p>
+                </div>
+                <div class="button-group">
+                    <button id="remove_all" class="modern-button danger">Clear All Words</button>
+                    <p class="button-description">Permanently delete all saved words and their history. This action cannot be undone.</p>
+                </div>
+            </div>
+            <br>
             <h2>Rules</h2>
             <table id='regex_table'></table>
             <textarea rows="10" cols="100" id="regex_text"></textarea>
             <br>
-            <button id="save_regex">save</button>
+            <button id="save_regex" class="modern-button">Save Rules</button>
             <span id='wrong_format'>Wrong format!</span>
         </div>
     </body>
