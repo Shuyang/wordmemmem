@@ -1,9 +1,11 @@
-var regexes;
+let regexes;
+
+// Initialize regexes
 chrome.storage.sync.get("regexes", function(result) { 
     regexes = result.regexes.map(x => new RegExp(x.regex));
 });
 
-function get_word(url) {
+export function get_word(url) {
     let url_parser =  document.createElement('a');
     url_parser.href = url;
     let hostname = url_parser.hostname;
@@ -18,8 +20,8 @@ function get_word(url) {
     return word;
 }
 
-function update_record(word, history_item, result) {
-    var word_record = result[word] ;
+export function update_record(word, history_item, result) {
+    var word_record = result[word];
     if (word_record != undefined) {
         word_record.visit_count++;
     } else {
@@ -28,13 +30,13 @@ function update_record(word, history_item, result) {
         }
     }
     word_record.last_visit_time = history_item.lastVisitTime;
-    word_record.url = history_item.url
+    word_record.url = history_item.url;
     save_object = {};
     save_object[word] = word_record;
     chrome.storage.local.set(save_object);
 }
 
-function process_history_item(history_item) {
+export function process_history_item(history_item) {
     let url = history_item.url;
     let word = get_word(url);
     if (word == undefined)

@@ -10,16 +10,16 @@ function show_cards(result) {
         let url = word_record[1].url;
         let card = $(`
         <div class="card">
-            <div class="left">
-                <div class="word">
-                    ${word_display}
-                </div>
-                <div>
-                    ${time_ago} 
-                </div>
+            <div class="word">
+                ${word_display}
             </div>
-            <div class="right">
-                <a href="${url}"><img src="icons/link.svg" class="icon"/></a>
+            <div class="bottom">
+                <div class="left">
+                    ${time_ago}
+                </div>
+                <div class="right">
+                    <a href="${url}"><img src="icons/link.svg" class="icon"/></a>
+                </div>
             </div>
         </div>`);
         let right = card.find(".right").hide()

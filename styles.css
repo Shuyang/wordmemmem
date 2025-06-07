@@ -7,30 +7,42 @@
 
 .card {
     min-width: 450px;
-    height: 90px;
-    padding: 10px 20px;
+    min-height: 90px;
+    padding: 10px 20px 18px 20px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    transition: box-shadow 0.2s ease;
 }
 .card:hover{
     box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.2);
 }
 
+.bottom {
+    width: 450px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+}
+
 .left {
-    float: left;
+    display: flex;
+    align-items: center;
 }
 
 .right {
-    float: right;
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
-    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+    height: 100%;
 }
 
 .word {
     font-size: 36pt;
-    margin-bottom: 5px;
+    margin-bottom: 12px;
     white-space: nowrap;
 }
 

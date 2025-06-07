@@ -1,10 +1,15 @@
+// Import core functionality
+import { get_word, update_record, process_history_item } from './core.js';
 
+// Listen for history visits
 chrome.history.onVisited.addListener(process_history_item);
 
-chrome.browserAction.onClicked.addListener(function (tab) {
+// Handle extension icon click
+chrome.action.onClicked.addListener(function (tab) {
     chrome.tabs.create({url: 'flashcards.html'});
 });
 
+// Initialize on installation
 chrome.runtime.onInstalled.addListener(function(){
     const init_regexes = [
         {name: "dictionary.com", regex: "https://www.dictionary.com/browse/([^?&]+)"}, 
@@ -14,7 +19,6 @@ chrome.runtime.onInstalled.addListener(function(){
         {name: "youdao.com/search", regex: "http://dict.youdao.com/search\\?q=([^&?]+)"},
         {name: "youdao.com/w", regex: "http://dict.youdao.com/w/([^/?&]+)/"},
     ]
-    chrome.storage.sync.set({regexes: init_regexes})
-    regexes = init_regexes.map(x => new RegExp(x.regex));
+    chrome.storage.sync.set({regexes: init_regexes});
 });
 
