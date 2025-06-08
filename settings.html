@@ -1,8 +1,58 @@
+<!DOCTYPE html>
 <html>
     <head>
-     <title>Wordmemmem</title>
+        <title>Wordmemmem - Settings</title>
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-       <h1>settings</h1>
+        <div class="page">
+            <div class="header">
+                <div class="header-left"><h1>Wordmemmem</h1></div>
+                <div class="header-right"><a href="flashcards.html">View words</a></div>
+             </div>
+            <hr>
+            <h2>Manage words</h2>
+            <div class="word-controls-container">
+                <div class="button-group">
+                    <div class="button-container">
+                        <button id="load_history">Load history</button>
+                        <span id="load_history_status" class="status-label"></span>
+                    </div>
+                    <p class="button-description">Scan your Chrome history for dictionary lookups. This may take a while depending on your history size.</p>
+                    <br>
+                </div>
+                <div class="button-group">
+                    <div class="button-container">
+                        <button id="remove_all">Clear words</button>
+                        <span id="remove_all_status" class="status-label"></span>
+                    </div>
+                    <p class="button-description"> Delete all saved words. This action cannot be undone. This will not affect your Chrome history.</p>
+                </div>
+            </div>
+            <br>
+            <h2>Edit Rules</h2>
+            <div id="rules_container">
+                <div id="rules_header">
+                    <span class="rule-delete-header"></span>
+                    <span class="rule-name-header">Name</span>
+                    <span class="rule-regex-header">Regular Expression</span>
+                    <span class="rule-status-header"></span>
+                </div>
+                <div id="rules_list"></div>
+                <div class="add-rule-container">
+                    <button id="add_rule" type="button">+ Add Rule</button>
+                </div>
+            </div>
+            
+            <h3>Batch editing witn JSON (for advanced users)</h3>
+            <textarea rows="12" cols="100" id="regex_text" placeholder="Edit rules in JSON format..."></textarea>
+            <div class="batch-edit-buttons">
+                <button id="save_json" type="button">Save JSON</button>
+                <span id="auto_save_status" class="status-label"></span>
+            </div>
+        </div>
     </body>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script type="module" src="core.js"></script>
+    <script type="module" src="settings.js"></script>
 </html>

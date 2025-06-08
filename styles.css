@@ -1,12 +1,39 @@
 .page {
-    padding:75px 150px;
+    padding:20px 150px;
     display: flex;
     flex-direction: column;
     align-items:stretch;
+    max-width: 1000px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.header a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.header a:hover {
+    color: #333;
+}
+
+#cardsDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .card {
-    min-width: 450px;
+    min-width: 600px;
     min-height: 90px;
     padding: 10px 20px 18px 20px;
     display: flex;
@@ -19,7 +46,7 @@
 }
 
 .bottom {
-    width: 450px;
+    width: 600px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -259,5 +286,8 @@ h3 {
     opacity: 1;
     transform: scale(1.1);
 }
+
+
+
 
 
