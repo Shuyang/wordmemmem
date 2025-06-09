@@ -26,12 +26,17 @@
                         <button id="add_rule" type="button">+ Add Rule</button>
                     </div>
                 </div>
-                <div class="settings-sub-section">
-                    <h3>Batch editing witn JSON (for advanced users)</h3>
-                    <textarea rows="12" cols="100" id="regex_text" placeholder="Edit rules in JSON format..."></textarea>
-                    <div class="button-container">
-                        <button id="save_json" type="button">Save JSON</button>
-                        <span id="save_json_status" class="status-label"></span>
+                <div class="collapsible-section">
+                    <h3 class="collapsible-header" id="json_section_header">
+                        Batch editing with JSON
+                        <img src="icons/chevron-down.svg" class="chevron" id="json_section_chevron">
+                    </h3>
+                    <div class="collapsible-content" id="json_section_content" style="display: none;">
+                        <textarea rows="12" cols="100" id="regex_text" placeholder="Edit rules in JSON format..."></textarea>
+                        <div class="button-container">
+                            <button id="save_json" type="button">Save JSON</button>
+                            <span id="save_json_status" class="status-label"></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -66,4 +71,7 @@
     <script src="jquery-3.3.1.min.js"></script>
     <script type="module" src="core.js"></script>
     <script type="module" src="settings.js"></script>
+    <script>
+
+    </script>
 </html>

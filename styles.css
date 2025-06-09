@@ -177,6 +177,41 @@ button:disabled {
     margin: 20px 0;
 }
 
+.collapsible-section {
+    margin: 20px 0;
+}
+
+.collapsible-header {
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.collapsible-header:hover {
+    color: #333;
+}
+
+.chevron {
+    font-size: 12px;
+    transition: transform 0.2s ease;
+    color: #999;
+}
+
+.chevron.expanded {
+    transform: rotate(-90deg);
+}
+
+.collapsible-content {
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.collapsible-content.collapsed {
+    display: none;
+}
+
 #rules_header {
     display: grid;
     grid-template-columns: 40px 150px 1fr 120px;
@@ -241,13 +276,14 @@ h3 {
 
 #regex_text {
     width: 100%;
-    min-height: 200px;
+    min-height: 400px;
     font-family: monospace;
     font-size: 13px;
     border: 1px solid #ddd;
     border-radius: 3px;
     padding: 8px;
     resize: vertical;
+    box-sizing: border-box;
 }
 
 .rule-status {

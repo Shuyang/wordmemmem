@@ -202,6 +202,23 @@ $("#save_json").click(function() {
     }
 });
 
+// Collapsible section functionality
+$('#json_section_header').click(function() {
+    const content = $('#json_section_content');
+    const chevron = $('#json_section_chevron');
+    
+    if (content.is(':visible')) {
+        // Collapse
+        content.slideUp(200);
+        chevron.removeClass('expanded');
+    } else {
+        // Expand
+        content.slideDown(200);
+        chevron.addClass('expanded');
+    }
+});
+
+
 $("#reset_defaults").click(function() {
     const status = $('#reset_defaults_status');
     
