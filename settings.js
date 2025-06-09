@@ -1,4 +1,4 @@
-import { process_history_item } from './core.js';
+import { process_history_item, default_regexes } from './core.js';
 
 $("#remove_all").click(function() {
     const button = $(this);
@@ -33,20 +33,23 @@ $("#load_history").click(function() {
 })
 
 // Auto-save functionality
-function autoSaveRules() {
-    const status = $('#auto_save_status');
-    status.text('Saving...');
+function autoSaveRules(statusElement) {
+    if (statusElement) {
+        statusElement.text('Saving...');
+    }
     
     try {
         const rules = collectRulesFromForm();
         chrome.storage.sync.set({regexes: rules}, function() {
-            status.text('Saved!');
             $('#regex_text').val(JSON.stringify(rules, null, 2));
-            setTimeout(() => status.text(''), 2000);
+            if (statusElement) {
+                statusElement.text('Saved!');
+            }
         });
     } catch(e) {
-        status.text('Save error!');
-        setTimeout(() => status.text(''), 2000);
+        if (statusElement) {
+            statusElement.text('Save error!');
+        }
     }
 }
 
@@ -101,18 +104,15 @@ function createRuleRow(name = '', regex = '') {
     // Add delete functionality with auto-save
     ruleRow.find('.delete-rule-icon').click(function() {
         ruleRow.remove();
-        autoSaveRules();
+        autoSaveRules(); // Silent operation
     });
     
     // Add validation and auto-save on input changes
     ruleRow.find('.rule-name-input, .rule-regex-input').on('input', function() {
         clearTimeout(window.autoSaveTimeout);
-        validateRule(ruleRow);
-        window.autoSaveTimeout = setTimeout(() => {
-            if (validateRule(ruleRow)) {
-                autoSaveRules();
-            }
-        }, 500);
+        if (validateRule(ruleRow)) {
+            autoSaveRules(); // Silent operation
+        }
     });
     
     // Validate on blur as well
@@ -120,6 +120,7 @@ function createRuleRow(name = '', regex = '') {
         validateRule(ruleRow);
     });
     
+    validateRule(ruleRow);
     return ruleRow;
 }
 
@@ -134,6 +135,9 @@ function loadRules(result) {
         });
         $('#regex_text').val(JSON.stringify(result.regexes, null, 2));
     }
+    $('#regex_text').on('input', function(){
+        $('#save_json_status').text('')
+    })
 }
 
 function collectRulesFromForm() {
@@ -167,14 +171,17 @@ $("#add_rule").click(function() {
     const newRule = createRuleRow();
     $('#rules_list').append(newRule);
     newRule.find('.rule-name-input').focus();
-    autoSaveRules();
+    autoSaveRules(); // Silent operation
 });
 
 $("#save_json").click(function() {
+    const status = $('#save_json_status');
+    
     try {
         const jsonText = $('#regex_text').val().trim();
         if (!jsonText) return;
         
+        status.text('Parsing JSON...');
         const rules = JSON.parse(jsonText);
         
         // Clear existing rules and load from JSON
@@ -188,11 +195,29 @@ $("#save_json").click(function() {
             }
         });
         
-        // Auto-save after loading from JSON
-        autoSaveRules();
+        // Auto-save after loading from JSON with status feedback
+        autoSaveRules(status);
     } catch(e) {
-        alert('Invalid JSON format. Please check your syntax.');
+        status.text('Invalid JSON format. Check your syntax.');
     }
+});
+
+$("#reset_defaults").click(function() {
+    const status = $('#reset_defaults_status');
+    
+    status.text('Resetting...');
+    
+    // Clear existing rules and load defaults
+    const rulesList = $('#rules_list');
+    rulesList.empty();
+    
+    default_regexes.forEach(function(rule) {
+        const ruleRow = createRuleRow(rule.name, rule.regex);
+        rulesList.append(ruleRow);
+    });
+    
+    // Auto-save after loading defaults with status feedback
+    autoSaveRules(status);
 });
 
 // Initialize

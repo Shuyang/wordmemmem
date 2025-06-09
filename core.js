@@ -1,19 +1,21 @@
 let regexes = [];
 
+// Default regexes configuration
+export const default_regexes = [
+    {name: "dictionary.com", regex: "https://www.dictionary.com/browse/([^?&]+)"}, 
+    {name: "google dobs", regex: "https://www.google.com/search.*#dobs=(.+)"},
+    {name: "google define", regex: "https://www.google.com/search\\?q=define\\+([^&?]+)"},
+    {name: "merriam-webster", regex: "https://www.merriam-webster.com/dictionary/([^?&]+)"},
+    {name: "youdao.com/search", regex: "http://dict.youdao.com/search\\?q=([^&?]+)"},
+    {name: "youdao.com/w", regex: "http://dict.youdao.com/w/([^/?&]+)/"},
+];
+
 // Initialize regexes
 chrome.storage.sync.get("regexes", function(result) { 
     if (result && result.regexes) {
     regexes = result.regexes.map(x => new RegExp(x.regex));
     } else {
         // Fallback to default regexes if none are found
-        const default_regexes = [
-            {name: "dictionary.com", regex: "https://www.dictionary.com/browse/([^?&]+)"}, 
-            {name: "google dobs", regex: "https://www.google.com/search.*#dobs=(.+)"},
-            {name: "google define", regex: "https://www.google.com/search\\?q=define\\+([^&?]+)"},
-            {name: "merriam-webster", regex: "https://www.merriam-webster.com/dictionary/([^?&]+)"},
-            {name: "youdao.com/search", regex: "http://dict.youdao.com/search\\?q=([^&?]+)"},
-            {name: "youdao.com/w", regex: "http://dict.youdao.com/w/([^/?&]+)/"},
-        ];
         regexes = default_regexes.map(x => new RegExp(x.regex));
         // Save default regexes
         chrome.storage.sync.set({regexes: default_regexes});

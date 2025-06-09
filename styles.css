@@ -13,6 +13,7 @@
 }
 
 .header h1 {
+    font-size: 16pt;
     margin: 0;
 }
 
@@ -33,7 +34,7 @@
 }
 
 .card {
-    min-width: 600px;
+    min-width: 480px;
     min-height: 90px;
     padding: 10px 20px 18px 20px;
     display: flex;
@@ -46,7 +47,7 @@
 }
 
 .bottom {
-    width: 600px;
+    width: 480px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -118,6 +119,7 @@ hr {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    margin-bottom: 20px;
 }
 
 button {
@@ -171,7 +173,7 @@ button:disabled {
     min-width: 80px;
 }
 
-#rules_container {
+.settings-sub-section{
     margin: 20px 0;
 }
 
@@ -239,7 +241,6 @@ h3 {
 
 #regex_text {
     width: 100%;
-    max-width: 1000px;
     min-height: 200px;
     font-family: monospace;
     font-size: 13px;
@@ -247,16 +248,6 @@ h3 {
     border-radius: 3px;
     padding: 8px;
     resize: vertical;
-}
-
-.batch-edit-buttons {
-    margin-top: 10px;
-    display: flex;
-    gap: 10px;
-}
-
-.batch-edit-buttons button {
-    min-width: 100px;
 }
 
 .rule-status {
