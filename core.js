@@ -1,15 +1,5 @@
 let regexes = [];
 
-// Default regexes configuration
-// export const default_regexes = [
-//     {name: "dictionary.com", regex: "https://www.dictionary.com/browse/([^?&#]+)"}, 
-//     {name: "google define", regex: "https://www.google.com/search\\?q=define\\+([^?&#]+)"},
-//     {name: "google meaning", regex: "https://www.google.com/search\\?q=([^?&#]+)\\+meaning"},
-//     {name: "merriam-webster", regex: "https://www.merriam-webster.com/dictionary/([^?&#]+)"},
-//     {name: "youdao.com/search", regex: "http://dict.youdao.com/search\\?q=([^?&#/]+)"},
-//     {name: "youdao.com/w", regex: "http://dict.youdao.com/w/([^?&#/]+)/"},
-// ];
-
 export const default_regexes = [
     {
         "name": "dictionary.com",
@@ -29,11 +19,11 @@ export const default_regexes = [
     },
     {
         "name": "youdao.com/search",
-        "regex": "https?://dict\\.youdao\\.com/search\\?.*?q=([^?&#&/]+)"
+        "regex": "https://dict\\.youdao\\.com/search\\?.*?q=([^?&#&/]+)"
     },
     {
         "name": "youdao.com/w",
-        "regex": "https?://dict\\.youdao\\.com/w/([^?&#/]+)/?$"
+        "regex": "https://dict\\.youdao\\.com/w/([^?&#/]+)/?$"
     },
     {
         "name": "cambridge",
