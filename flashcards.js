@@ -25,19 +25,16 @@ function show_cards(result) {
         let right = card.find(".right").hide()
         let delete_button = $(`
             <img src="icons/trash-alt.svg" class="icon"/>
-        `).click(function(){
+        `).on('click', function(){
             card.hide();
             chrome.storage.local.remove(word);
         });
         delete_button.appendTo(right);
-        card.hover(
-            function(){
-                right.fadeIn(10);
-            },
-            function(){
-                right.fadeOut(50);
-            }
-        );
+        card.on("mouseenter", function(){
+            right.fadeIn(10);
+        }).on("mouseleave", function(){
+            right.fadeOut(50);
+        });
         card.appendTo("#cardsDiv");
         
     });

@@ -1,4 +1,4 @@
-import { process_history_item, default_regexes } from './core.js';
+import { process_history_item, default_regexes, load_regexes } from './core.js';
 
 
 // Auto-save functionality
@@ -15,6 +15,7 @@ function autoSaveRules(statusElement) {
                 statusElement.text('Saved!');
             }
         });
+        load_regexes();
     } catch(e) {
         if (statusElement) {
             statusElement.text('Save error!');
@@ -22,6 +23,27 @@ function autoSaveRules(statusElement) {
     }
 }
 
+
+// Helper function to count capture groups in a regex
+function countCaptureGroups(regexString) {
+    let count = 0;
+    let i = 0;
+    
+    while (i < regexString.length) {
+        if (regexString[i] === '\\') {
+            // Skip escaped character
+            i += 2;
+        } else if (regexString[i] === '(' && regexString[i + 1] !== '?') {
+            // Found a capture group (not a non-capturing group (?:...))
+            count++;
+            i++;
+        } else {
+            i++;
+        }
+    }
+    
+    return count;
+}
 
 // Pure validation function - returns validation result without DOM manipulation
 function validateRuleData(name, regex) {
@@ -44,10 +66,25 @@ function validateRuleData(name, regex) {
     // Test regex validity
     try {
         new RegExp(trimmedRegex);
-        return { valid: true, error: '' };
     } catch(e) {
         return { valid: false, error: 'Regex parsing error' };
     }
+    
+    // Check capture groups
+    const captureGroupCount = countCaptureGroups(trimmedRegex);
+    if (captureGroupCount === -1) {
+        return { valid: false, error: 'Regex parsing error' };
+    }
+    
+    if (captureGroupCount === 0) {
+        return { valid: false, error: 'Must have exactly 1 capture group' };
+    }
+    
+    if (captureGroupCount > 1) {
+        return { valid: false, error: `Has ${captureGroupCount} capture groups, need exactly 1` };
+    }
+    
+    return { valid: true, error: '' };
 }
 
 // Validate individual rule (UI version)
@@ -86,7 +123,7 @@ function createRuleRow(name = '', regex = '') {
     `);
     
     // Add delete functionality with auto-save
-    ruleRow.find('.delete-rule-icon').click(function() {
+    ruleRow.find('.delete-rule-icon').on('click', function() {
         ruleRow.remove();
         autoSaveRules(); // Silent operation
     });
@@ -134,7 +171,7 @@ function collectRulesFromForm() {
     return rules;
 }
 
-function loadRules(result) {
+function loadRulesToUI(result) {
     const rulesList = $('#rules_list');
     rulesList.empty();
     
@@ -151,14 +188,14 @@ function loadRules(result) {
 }
 
 // Event handlers
-$("#add_rule").click(function() {
+$("#add_rule").on('click', function() {
     const newRule = createRuleRow();
     $('#rules_list').append(newRule);
     newRule.find('.rule-name-input').focus();
     autoSaveRules(); // Silent operation
 });
 
-$("#save_json").click(function() {
+$("#save_json").on('click', function() {
     const status = $('#save_json_status');
     
     // Step 1: Parse JSON
@@ -232,8 +269,8 @@ $("#save_json").click(function() {
     }
 });
 
-// Add collapsible functionality to the JSON section
-$('#json_section_header').click(function() {
+// Collapsible section functionality
+$('#json_section_header').on('click', function() {
     const content = $('#json_section_content');
     const chevron = $('#json_section_chevron');
     
@@ -248,7 +285,7 @@ $('#json_section_header').click(function() {
     }
 });
 
-$("#remove_all").click(function() {
+$("#remove_all").on('click', function() {
     const button = $(this);
     const status = $('#remove_all_status');
     
@@ -261,7 +298,7 @@ $("#remove_all").click(function() {
     });
 });
 
-$("#load_history").click(function() {
+$("#load_history").on('click', function() {
     const button = $(this);
     const status = $('#load_history_status');
     
@@ -280,7 +317,7 @@ $("#load_history").click(function() {
     });
 })
 
-$("#reset_defaults").click(function() {
+$("#reset_defaults").on('click', function() {
     const status = $('#reset_defaults_status');
     
     status.text('Resetting...');
@@ -299,4 +336,4 @@ $("#reset_defaults").click(function() {
 });
 
 // Initialize
-chrome.storage.sync.get("regexes", loadRules);
+chrome.storage.sync.get("regexes", loadRulesToUI);

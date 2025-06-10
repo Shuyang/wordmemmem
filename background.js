@@ -1,8 +1,18 @@
 // Import core functionality
-import { get_word, update_record, process_history_item } from './core.js';
+import { get_word, update_record, process_history_item, load_regexes } from './core.js';
+
+
 
 // Listen for history visits
 chrome.history.onVisited.addListener(process_history_item);
+
+// Listen for storage changes to reload regexes automatically
+chrome.storage.onChanged.addListener(function(changes, namespace) {
+    if (namespace === 'sync' && changes.regexes) {
+        console.log('Regexes updated in storage, reloading...');
+        load_regexes();
+    }
+});
 
 // Handle extension icon click
 chrome.action.onClicked.addListener(function (tab) {
