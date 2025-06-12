@@ -1,4 +1,4 @@
-import { process_history_item, default_regexes, load_regexes } from './core.js';
+import { process_history_item, default_regexes, load_regexes, load_from_history } from './core.js';
 
 
 // Auto-save functionality
@@ -304,17 +304,13 @@ $("#load_history").on('click', function() {
     
     button.prop('disabled', true);
     status.text('Loading...');
-    
-    let query = {
-        text: "",
-        startTime: 0,
-        maxResults: 0  // load entire history
-    };
-    chrome.history.search(query, function(results) {
-        results.forEach(process_history_item);
+
+    const loaded_callback = function() {
         button.prop('disabled', false);
         status.text('Loaded!');
-    });
+        console.log('Loaded!');
+    };
+    load_from_history(loaded_callback);
 })
 
 $("#reset_defaults").on('click', function() {

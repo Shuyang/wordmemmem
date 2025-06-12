@@ -1,5 +1,5 @@
 // Import core functionality
-import { get_word, update_record, process_history_item, load_regexes } from './core.js';
+import { get_word, update_record, process_history_item, load_regexes, load_from_history } from './core.js';
 
 
 
@@ -21,7 +21,9 @@ chrome.action.onClicked.addListener(function (tab) {
 
 // Initialize on installation
 chrome.runtime.onInstalled.addListener(function(){
-    // Any other initialization can go here
     console.log('Extension installed');
+    load_from_history(function() {
+        console.log('History loaded, extension ready');
+    });
 });
 

@@ -111,3 +111,15 @@ export function process_history_item(history_item) {
     let update_record_callback = update_record.bind(null, word, history_item);
     chrome.storage.local.get(word, update_record_callback);
 }
+
+export function load_from_history(callback) {
+    let query = {
+        text: "",
+        startTime: 0,
+        maxResults: 0  // load entire history
+    };
+    chrome.history.search(query, function(results) {
+        results.forEach(process_history_item);
+        callback();
+    });
+}
