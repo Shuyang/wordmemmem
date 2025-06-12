@@ -1,7 +1,7 @@
 {
-    "name": "Wordmemmem",
+    "name": "VocabRiver",
     "version": "0.0",
-    "description": "Vocabulary flashcards from your web history",
+    "description": "Build your vocabulary naturally from your browsing history",
     "permissions": [
         "storage",
         "history"
@@ -16,4 +16,4 @@
     "action": {},
     "options_page": "settings.html",
     "manifest_version": 3
-  }
+}
