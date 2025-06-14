@@ -1,5 +1,9 @@
 function show_cards(result) {
     let word_record_array = Object.entries(result);
+    if (word_record_array.length === 0) {
+        $('#no-words-message').show();
+        return;
+    }
     word_record_array.sort(function(a,b){
         return b[1].last_visit_time - a[1].last_visit_time ;
     })

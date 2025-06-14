@@ -2,10 +2,6 @@ let regexes = [];
 
 export const default_regexes = [
     {
-        "name": "dictionary.com",
-        "regex": "https://www\\.dictionary\\.com/browse/([^?&#]+)"
-    },
-    {
         "name": "google define",
         "regex": "https://www\\.google\\.com/search\\?.*?q=define[\\+%20]([^?&#&]+)"
     },
@@ -14,20 +10,20 @@ export const default_regexes = [
         "regex": "https://www\\.google\\.com/search\\?.*?q=([^?&#&+]+)[\\+%20]meaning"
     },
     {
+        "name": "dictionary.com",
+        "regex": "https://www\\.dictionary\\.com/browse/([^?&#]+)"
+    },
+    {
         "name": "merriam-webster",
         "regex": "https://www\\.merriam-webster\\.com/dictionary/([^?&#]+)"
     },
     {
-        "name": "youdao.com/search",
-        "regex": "https://dict\\.youdao\\.com/search\\?.*?q=([^?&#&/]+)"
-    },
-    {
-        "name": "youdao.com/w",
-        "regex": "https://dict\\.youdao\\.com/w/([^?&#/]+)/?$"
-    },
-    {
         "name": "cambridge",
         "regex": "https://dictionary\\.cambridge\\.org/.*dictionary/[^/]+/([^?&#]+)"
+    },
+    {   
+        "name": "OED",
+        "regex": "https://www\\.oed\\.com/dictionary/([^?&#_]+)"
     },
     {
         "name": "collins",
@@ -36,6 +32,14 @@ export const default_regexes = [
     {
         "name": "vocabulary.com",
         "regex": "https://www\\.vocabulary\\.com/dictionary/([^?&#]+)"
+    },
+    {
+        "name": "dict.youdao.com/search",
+        "regex": "https://dict\\.youdao\\.com/search\\?.*?q=([^?&#&/]+)"
+    },
+    {
+        "name": "dict.youdao.com/result",
+        "regex": "https://dict\\.youdao\\.com/result\\?.*?word=([^?&#&/]+)"
     },
     {
         "name": "wordnik",
@@ -123,3 +127,28 @@ export function load_from_history(callback) {
         callback();
     });
 }
+
+export function update_new_tab_target(target) {
+    console.log('Updating new tab page target');
+    chrome.storage.sync.get("replace_new_tab", function(result) {
+        console.log('New tab page preference:', result.replace_new_tab);
+        if (result.replace_new_tab === false) {
+            // If disabled, show default new tab
+            chrome.tabs.onCreated.addListener(function(tab) {
+                if (tab.pendingUrl === "chrome://newtab/") {
+                    chrome.tabs.update(tab.id, { url: "chrome://newtab/" });
+                }
+            });
+        } else {
+            // If enabled, show flashcards
+            chrome.tabs.onCreated.addListener(function(tab) {
+                if (tab.pendingUrl === "chrome://newtab/") {
+                    chrome.tabs.update(tab.id, { url: "flashcards.html" });
+                }
+            });
+        }
+    });
+}
+
+// Initialize new tab page preference on startup
+update_new_tab_target();

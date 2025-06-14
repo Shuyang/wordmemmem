@@ -11,7 +11,13 @@
                 <div class="header-right"><a href="flashcards.html">View words</a></div>
              </div>
             <hr>
-            
+            <div class="settings-section">
+                <h2>General</h2>
+                <div class="option-row">
+                    <input type="checkbox" id="replace_new_tab" checked>
+                    <label for="replace_new_tab">Show VocabRiver on new tab page</label>
+                </div>
+            </div>
             <div class="settings-section">
                 <h2>Edit Rules</h2>
                 <div class="settings-sub-section">
@@ -45,7 +51,7 @@
                 <div class="word-controls-container">
                     <div class="button-group">
                         <div class="button-container">
-                            <button id="load_history">Load history</button>
+                            <button id="load_history">Load from history</button>
                             <span id="load_history_status" class="status-label"></span>
                         </div>
                         <p class="button-description">Scan your Chrome history for dictionary lookups. This may take a while depending on your history size.</p>

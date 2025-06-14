@@ -187,7 +187,25 @@ function loadRulesToUI(result) {
     })
 }
 
+// Initialize
+chrome.storage.sync.get("regexes", loadRulesToUI);
+
+// Initialize new tab page preference
+chrome.storage.sync.get("replace_new_tab", function(result) {
+    if (result.replace_new_tab === undefined) {
+        // Default to true if not set
+        chrome.storage.sync.set({ replace_new_tab: true });
+    }
+    $('#replace_new_tab').prop('checked', result.replace_new_tab !== false);
+});
+
 // Event handlers
+$('#replace_new_tab').on('change', function() {
+    const isChecked = $(this).prop('checked');
+    chrome.storage.sync.set({ replace_new_tab: isChecked });
+    console.log('New tab page preference changed to:', isChecked);
+});
+
 $("#add_rule").on('click', function() {
     const newRule = createRuleRow();
     $('#rules_list').append(newRule);
@@ -331,5 +349,3 @@ $("#reset_defaults").on('click', function() {
     autoSaveRules(status);
 });
 
-// Initialize
-chrome.storage.sync.get("regexes", loadRulesToUI);

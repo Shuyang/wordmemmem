@@ -4,14 +4,12 @@
     "description": "Build your vocabulary naturally from your browsing history",
     "permissions": [
         "storage",
-        "history"
+        "history",
+        "tabs"
     ],
     "background": {
         "service_worker": "background.js",
         "type": "module"
-    },
-    "chrome_url_overrides" : {
-        "newtab": "flashcards.html"
     },
     "action": {},
     "options_page": "settings.html",

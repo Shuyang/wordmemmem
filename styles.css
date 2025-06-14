@@ -173,12 +173,10 @@ button:disabled {
     min-width: 80px;
 }
 
-.settings-sub-section{
-    margin: 20px 0;
-}
-
+.settings-section,
+.settings-sub-section,
 .collapsible-section {
-    margin: 20px 0;
+    margin-bottom: 20px;
 }
 
 .collapsible-header {
@@ -314,7 +312,34 @@ h3 {
     transform: scale(1.1);
 }
 
+.option-row input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
 
+.option-row label {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.option-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.bottom-message {
+    text-align: center;
+    padding: 20px;
+    color: #333;
+    display: none;
+}
+
+.bottom-message a {
+    color: #666;
+}
 
 
 
