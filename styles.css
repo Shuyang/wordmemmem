@@ -15,6 +15,15 @@
 .header h1 {
     font-size: 16pt;
     margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header h1 img {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
 }
 
 .header a {
