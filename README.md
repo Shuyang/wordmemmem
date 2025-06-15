@@ -13,3 +13,9 @@ A Chrome extension that helps you build vocabulary naturally from your browsing 
 3. Start browsing and let your vocabulary river flow!
 
 ![Screenshot](screenshot.png)
+
+# Changelog
+
+## [0.1.0] - 2024-06-15
+### Added
+- Beta release

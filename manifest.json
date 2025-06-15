@@ -1,7 +1,7 @@
 {
     "name": "VocabRiver",
-    "version": "0.0",
-    "description": "Build your vocabulary naturally from your browsing history",
+    "version": "0.1.0",
+    "description": "Build your vocabulary naturally from your browsing history.",
     "permissions": [
         "storage",
         "history",
