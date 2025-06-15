@@ -2,6 +2,15 @@ import { process_history_item, default_regexes, load_regexes, load_from_history 
 
 
 // Auto-save functionality
+function showStatusWithTimeout(element, message, timeout = 10000) {
+    if (element) {
+        element.text(message);
+        setTimeout(() => {
+            element.text('');
+        }, timeout);
+    }
+}
+
 function autoSaveRules(statusElement) {
     if (statusElement) {
         statusElement.text('Saving...');

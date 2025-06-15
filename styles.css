@@ -300,12 +300,12 @@ h3 {
 }
 
 .rule-status.valid {
-    color: #2ecc71;
+    color: #2e95df;
     font-size: 14px;
 }
 
 .rule-status.error {
-    color: #e74c3c;
+    color: #e25c2b;
 }
 
 .delete-rule-icon {
@@ -325,6 +325,7 @@ h3 {
     width: 18px;
     height: 18px;
     cursor: pointer;
+    accent-color: #2e95df;
 }
 
 .option-row label {
