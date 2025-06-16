@@ -18,3 +18,7 @@ A Chrome extension that helps you build vocabulary naturally from your browsing 
 
 ### [0.1.0] - 2024-06-15
 - Beta release
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
