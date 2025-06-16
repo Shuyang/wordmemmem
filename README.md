@@ -12,7 +12,8 @@ A Chrome extension that helps you build vocabulary naturally from your browsing 
 2. In Chrome: "Manage Extensions" → turn on "Developer mode" → "Load unpacked" → choose the VocabRiver directory
 3. Start browsing and let your vocabulary river flow!
 
-![Screenshot](screenshot.png)
+![Screenshot1](screenshot1.png)
+![Screenshot2](screenshot2.png)
 
 ## Changelog
 
