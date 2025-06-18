@@ -1,3 +1,38 @@
+/* Light mode (default) */
+:root {
+    --bg-color: white;
+    --text-color: #333;
+    --secondary-text-color: #666;
+    --border-color: #ddd;
+    --hover-bg-color: #f5f5f5;
+    --active-bg-color: #e0e0e0;
+    --card-shadow: rgba(0,0,0,0.2);
+    --hr-color: #ccc;
+    --disabled-color: #999;
+    --disabled-bg-color: #f9f9f9;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #1a1a1a;
+        --text-color: #e0e0e0;
+        --secondary-text-color: #a0a0a0;
+        --border-color: #404040;
+        --hover-bg-color: #2a2a2a;
+        --active-bg-color: #333333;
+        --card-shadow: rgba(25, 26, 26, 0.4);
+        --hr-color: #404040;
+        --disabled-color: #666;
+        --disabled-bg-color: #2a2a2a;
+    }
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
 .page {
     padding:20px 150px;
     display: flex;
@@ -27,13 +62,13 @@
 }
 
 .header a {
-    color: #666;
+    color: var(--secondary-text-color);
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 .header a:hover {
-    color: #333;
+    color: var(--text-color);
 }
 
 #cardsDiv {
@@ -52,7 +87,8 @@
     transition: box-shadow 0.2s ease;
 }
 .card:hover{
-    box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.2);
+    box-shadow: 1px 1px 3px 1px var(--card-shadow);
+    background-color: var(--hover-bg-color);
 }
 
 .bottom {
@@ -113,7 +149,7 @@ textarea{
 hr {
     width: 100%;
     border: none;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid var(--hr-color);
     margin: 20px 0;
 }
 
@@ -133,10 +169,10 @@ hr {
 
 button {
     padding: 4px 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
-    background-color: white;
-    color: #333;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     font-size: 14px;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -146,25 +182,25 @@ button {
 }
 
 button:hover {
-    background-color: #f5f5f5;
-    border-color: #ccc;
+    background-color: var(--hover-bg-color);
+    border-color: var(--border-color);
 }
 
 button:active {
-    background-color: #e0e0e0;
-    border-color: #aaa;
+    background-color: var(--active-bg-color);
+    border-color: var(--border-color);
     transform: translateY(1px);
 }
 
 button:disabled {
-    background-color: #f9f9f9;
-    color: #999;
+    background-color: var(--disabled-bg-color);
+    color: var(--disabled-color);
     cursor: not-allowed;
-    border-color: #ddd;
+    border-color: var(--border-color);
 }
 
 .button-description {
-    color: #666;
+    color: var(--secondary-text-color);
     font-size: 14px;
     margin: 0;
 }
@@ -178,7 +214,7 @@ button:disabled {
 .status-label {
     font-size: 14px;
     font-weight: 500;
-    color: #666;
+    color: var(--secondary-text-color);
     min-width: 80px;
 }
 
@@ -225,9 +261,9 @@ button:disabled {
     max-width: 1000px;
     gap: 10px;
     padding: 8px 0;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border-color);
     font-weight: 500;
-    color: #333;
+    color: var(--text-color);
 }
 
 .rule-row {
@@ -236,17 +272,19 @@ button:disabled {
     max-width: 1000px;
     gap: 10px;
     padding: 8px 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
     align-items: center;
 }
 
 .rule-name-input,
 .rule-regex-input {
     padding: 4px 8px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 3px;
     font-size: 14px;
     box-sizing: border-box;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
 .rule-name-input {
