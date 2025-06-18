@@ -124,7 +124,7 @@ function validateRule(ruleRow) {
 function createRuleRow(name = '', regex = '') {
     const ruleRow = $(`
         <div class="rule-row">
-            <img src="icons/trash-alt.svg" class="delete-rule-icon" alt="Delete">
+            <img src="icons/trash-alt.svg" class="icon" alt="Delete">
             <input type="text" class="rule-name-input" value="${name}" placeholder="Rule name">
             <input type="text" class="rule-regex-input" value="${regex}" placeholder="Regular expression">
             <span class="rule-status"></span>
@@ -132,7 +132,7 @@ function createRuleRow(name = '', regex = '') {
     `);
     
     // Add delete functionality with auto-save
-    ruleRow.find('.delete-rule-icon').on('click', function() {
+    ruleRow.find('.icon').on('click', function() {
         ruleRow.remove();
         autoSaveRules(); // Silent operation
     });
