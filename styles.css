@@ -1,3 +1,42 @@
+/* Light mode (default) */
+:root {
+    --bg-color: white;
+    --text-color: #333;
+    --secondary-text-color: #666;
+    --border-color: #ddd;
+    --hover-bg-color: #f5f5f5;
+    --hover-card-bg-color: white;
+    --active-bg-color: #e0e0e0;
+    --card-shadow: rgba(0,0,0,0.2);
+    --hr-color: #ccc;
+    --disabled-color: #999;
+    --disabled-bg-color: #f9f9f9;
+    --icon-filter: none;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #1a1a1a;
+        --text-color: #e0e0e0;
+        --secondary-text-color: #a0a0a0;
+        --border-color: #404040;
+        --hover-bg-color: #2a2a2a;
+        --hover-card-bg-color: #2a2a2a;
+        --active-bg-color: #333333;
+        --card-shadow: rgba(25, 26, 26, 0.4);
+        --hr-color: #404040;
+        --disabled-color: #666;
+        --disabled-bg-color: #2a2a2a;
+        --icon-filter: invert(1);
+    }
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
 .page {
     padding:20px 150px;
     display: flex;
@@ -27,13 +66,13 @@
 }
 
 .header a {
-    color: #666;
+    color: var(--secondary-text-color);
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 .header a:hover {
-    color: #333;
+    color: var(--text-color);
 }
 
 #cardsDiv {
@@ -52,7 +91,8 @@
     transition: box-shadow 0.2s ease;
 }
 .card:hover{
-    box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.2);
+    box-shadow: 1px 1px 3px 1px var(--card-shadow);
+    background-color: var(--hover-card-bg-color);
 }
 
 .bottom {
@@ -93,10 +133,14 @@
     width: 25px;
     height: 25px;
     padding: 5px;
+    filter: var(--icon-filter);
+    opacity: 0.6;
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .icon:hover {
-    transform: scale(1.2);
+    opacity: 1;
+    transform: scale(1.1);
 }
 
 th {
@@ -113,7 +157,7 @@ textarea{
 hr {
     width: 100%;
     border: none;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid var(--hr-color);
     margin: 20px 0;
 }
 
@@ -133,10 +177,10 @@ hr {
 
 button {
     padding: 4px 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
-    background-color: white;
-    color: #333;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     font-size: 14px;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -146,25 +190,25 @@ button {
 }
 
 button:hover {
-    background-color: #f5f5f5;
-    border-color: #ccc;
+    background-color: var(--hover-bg-color);
+    border-color: var(--border-color);
 }
 
 button:active {
-    background-color: #e0e0e0;
-    border-color: #aaa;
+    background-color: var(--active-bg-color);
+    border-color: var(--border-color);
     transform: translateY(1px);
 }
 
 button:disabled {
-    background-color: #f9f9f9;
-    color: #999;
+    background-color: var(--disabled-bg-color);
+    color: var(--disabled-color);
     cursor: not-allowed;
-    border-color: #ddd;
+    border-color: var(--border-color);
 }
 
 .button-description {
-    color: #666;
+    color: var(--secondary-text-color);
     font-size: 14px;
     margin: 0;
 }
@@ -178,7 +222,7 @@ button:disabled {
 .status-label {
     font-size: 14px;
     font-weight: 500;
-    color: #666;
+    color: var(--secondary-text-color);
     min-width: 80px;
 }
 
@@ -197,13 +241,13 @@ button:disabled {
 }
 
 .collapsible-header:hover {
-    color: #333;
+    color: var(--text-color);
 }
 
 .chevron {
     font-size: 12px;
     transition: transform 0.2s ease;
-    color: #999;
+    filter: var(--icon-filter);
 }
 
 .chevron.expanded {
@@ -225,9 +269,9 @@ button:disabled {
     max-width: 1000px;
     gap: 10px;
     padding: 8px 0;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border-color);
     font-weight: 500;
-    color: #333;
+    color: var(--text-color);
 }
 
 .rule-row {
@@ -236,17 +280,24 @@ button:disabled {
     max-width: 1000px;
     gap: 10px;
     padding: 8px 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
     align-items: center;
+}
+
+.rule-row .icon {
+    width: 20px;
+    height: 20px;
 }
 
 .rule-name-input,
 .rule-regex-input {
     padding: 4px 8px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 3px;
     font-size: 14px;
     box-sizing: border-box;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
 .rule-name-input {
@@ -258,25 +309,14 @@ button:disabled {
     font-family: monospace;
 }
 
-.add-rule-container {
-    margin-top: 15px;
-}
-
-#add_rule {
-    background-color: #f8f9fa;
-    border: 1px dashed #ccc;
-    color: #666;
-}
-
-#add_rule:hover {
-    background-color: #e9ecef;
-    border-color: #aaa;
+#rules_list {
+    margin-bottom: 15px;
 }
 
 h3 {
     margin-top: 30px;
     margin-bottom: 10px;
-    color: #666;
+    color: var(--secondary-text-color);
     font-size: 16px;
     font-weight: 500;
 }
@@ -286,11 +326,13 @@ h3 {
     min-height: 400px;
     font-family: monospace;
     font-size: 13px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 3px;
     padding: 8px;
     resize: vertical;
     box-sizing: border-box;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
 .rule-status {
@@ -306,19 +348,6 @@ h3 {
 
 .rule-status.error {
     color: #e25c2b;
-}
-
-.delete-rule-icon {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    opacity: 0.6;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.delete-rule-icon:hover {
-    opacity: 1;
-    transform: scale(1.1);
 }
 
 .option-row input[type="checkbox"] {
@@ -343,12 +372,12 @@ h3 {
 .bottom-message {
     text-align: center;
     padding: 20px;
-    color: #333;
+    color: var(--text-color);
     display: none;
 }
 
 .bottom-message a {
-    color: #666;
+    color: var(--secondary-text-color);
 }
 
 
