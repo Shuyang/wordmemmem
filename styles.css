@@ -7,7 +7,6 @@
     --hover-bg-color: #f5f5f5;
     --active-bg-color: #e0e0e0;
     --card-shadow: rgba(0,0,0,0.2);
-    --hr-color: #ccc;
     --disabled-color: #999;
     --disabled-bg-color: #f9f9f9;
     --icon-filter: none;
@@ -23,7 +22,6 @@
         --hover-bg-color: #2a2a2a;
         --active-bg-color: #333333;
         --card-shadow: rgba(25, 26, 26, 0.4);
-        --hr-color: #404040;
         --disabled-color: #666;
         --disabled-bg-color: #2a2a2a;
         --icon-filter: invert(1);
@@ -142,7 +140,7 @@ body {
     height: 25px;
     padding: 5px;
     filter: var(--icon-filter);
-    opacity: 0.6;
+    opacity: 0.9;
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
@@ -165,7 +163,7 @@ textarea{
 hr {
     width: 100%;
     border: none;
-    border-top: 1px solid var(--hr-color);
+    border-top: 1px solid var(--border-color);
     margin: 20px 0;
 }
 
@@ -306,6 +304,12 @@ button:disabled {
     box-sizing: border-box;
     background-color: var(--bg-color);
     color: var(--text-color);
+    outline: none;
+}
+
+.rule-name-input:focus,
+.rule-regex-input:focus {
+    border-color: var(--secondary-text-color);
 }
 
 .rule-name-input {
@@ -341,6 +345,11 @@ h3 {
     box-sizing: border-box;
     background-color: var(--bg-color);
     color: var(--text-color);
+    outline: none;
+}
+
+#regex_text:focus {
+    border-color: var(--secondary-text-color);
 }
 
 .rule-status {
