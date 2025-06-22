@@ -5,7 +5,6 @@
     --secondary-text-color: #666;
     --border-color: #ddd;
     --hover-bg-color: #f5f5f5;
-    --hover-card-bg-color: white;
     --active-bg-color: #e0e0e0;
     --card-shadow: rgba(0,0,0,0.2);
     --hr-color: #ccc;
@@ -22,7 +21,6 @@
         --secondary-text-color: #a0a0a0;
         --border-color: #404040;
         --hover-bg-color: #2a2a2a;
-        --hover-card-bg-color: #2a2a2a;
         --active-bg-color: #333333;
         --card-shadow: rgba(25, 26, 26, 0.4);
         --hr-color: #404040;
@@ -88,11 +86,21 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: box-shadow 0.2s ease;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    border: 1px solid transparent;
 }
-.card:hover{
+
+/* Light mode hover - shadow only */
+.card:hover {
     box-shadow: 1px 1px 3px 1px var(--card-shadow);
-    background-color: var(--hover-card-bg-color);
+}
+
+/* Dark mode hover - border only */
+@media (prefers-color-scheme: dark) {
+    .card:hover {
+        box-shadow: none;
+        border-color: var(--secondary-text-color);
+    }
 }
 
 .bottom {
