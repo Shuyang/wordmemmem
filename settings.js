@@ -217,7 +217,7 @@ chrome.storage.sync.get("theme_mode", function(result) {
     } else {
         $('#theme_mode').val(result.theme_mode);
     }
-    applyTheme(result.theme_mode || "system");
+    apply_theme(result.theme_mode || "system");
 });
 
 // Event handlers
