@@ -1,4 +1,4 @@
-import { process_history_item, default_regexes, load_regexes, load_from_history } from './core.js';
+import { process_history_item, default_regexes, load_regexes, load_from_history, apply_theme } from './core.js';
 
 
 // Auto-save functionality
@@ -208,11 +208,30 @@ chrome.storage.sync.get("replace_new_tab", function(result) {
     $('#replace_new_tab').prop('checked', result.replace_new_tab !== false);
 });
 
+// Initialize theme preference
+chrome.storage.sync.get("theme_mode", function(result) {
+    if (result.theme_mode === undefined) {
+        // Default to system if not set
+        chrome.storage.sync.set({ theme_mode: "system" });
+        $('#theme_mode').val("system");
+    } else {
+        $('#theme_mode').val(result.theme_mode);
+    }
+    applyTheme(result.theme_mode || "system");
+});
+
 // Event handlers
 $('#replace_new_tab').on('change', function() {
     const isChecked = $(this).prop('checked');
     chrome.storage.sync.set({ replace_new_tab: isChecked });
     console.log('New tab page preference changed to:', isChecked);
+});
+
+$('#theme_mode').on('change', function() {
+    const theme = $(this).val();
+    chrome.storage.sync.set({ theme_mode: theme });
+    apply_theme(theme);
+    console.log('Theme changed to:', theme);
 });
 
 $("#add_rule").on('click', function() {

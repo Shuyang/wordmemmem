@@ -1,3 +1,5 @@
+import { apply_theme } from './core.js';
+
 function show_cards(result) {
     let word_record_array = Object.entries(result);
     if (word_record_array.length === 0) {
@@ -45,3 +47,17 @@ function show_cards(result) {
 }
 chrome.storage.local.get(null, show_cards);
 
+
+// Initialize theme
+chrome.storage.sync.get("theme_mode", function(result) {
+    const theme = result.theme_mode || "system";
+    apply_theme(theme);
+});
+
+// Listen for storage changes to reload regexes automatically
+chrome.storage.onChanged.addListener(function(changes, namespace) {
+    if (namespace === 'sync' && changes.theme_mode) {
+        console.log('Theme mode updated in storage, reloading...');
+        applyTheme(changes.theme_mode.newValue);
+    }
+});

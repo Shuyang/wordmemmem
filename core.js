@@ -152,3 +152,19 @@ export function update_new_tab_target(target) {
 
 // Initialize new tab page preference on startup
 update_new_tab_target();
+
+
+// Function to apply theme
+function apply_theme(theme) {
+    // Only apply theme if we're in a context with document (not in background script)
+    if (typeof document !== 'undefined') {
+        if (theme === "system") {
+            document.documentElement.removeAttribute('data-theme');
+        } else {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+    }
+}
+
+// Export theme function for use in other modules
+export { apply_theme };
