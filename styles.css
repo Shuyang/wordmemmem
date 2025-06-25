@@ -1,4 +1,8 @@
-/* Light mode (default) */
+/* ==========================================================================
+   CSS VARIABLES & THEMES
+   ========================================================================== */
+
+/* System theme (light by default, dark when system preference) */
 :root {
     --bg-color: white;
     --text-color: #333;
@@ -12,7 +16,7 @@
     --icon-filter: none;
 }
 
-/* Dark mode */
+/* Dark mode (system preference) */
 @media (prefers-color-scheme: dark) {
     :root {
         --bg-color: #1a1a1a;
@@ -28,7 +32,7 @@
     }
 }
 
-/* Manual light mode */
+/* Manual light mode override */
 [data-theme="light"] {
     --bg-color: white;
     --text-color: #333;
@@ -42,7 +46,7 @@
     --icon-filter: none;
 }
 
-/* Manual dark mode */
+/* Manual dark mode override */
 [data-theme="dark"] {
     --bg-color: #1a1a1a;
     --text-color: #e0e0e0;
@@ -56,18 +60,33 @@
     --icon-filter: invert(1);
 }
 
+/* ==========================================================================
+   BASE STYLES
+   ========================================================================== */
+
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
 }
 
 .page {
-    padding:20px 150px;
+    padding: 20px 150px;
     display: flex;
     flex-direction: column;
-    align-items:stretch;
+    align-items: stretch;
     max-width: 1000px;
 }
+
+hr {
+    width: 100%;
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 20px 0;
+}
+
+/* ==========================================================================
+   HEADER & NAVIGATION
+   ========================================================================== */
 
 .header {
     display: flex;
@@ -99,6 +118,10 @@ body {
     color: var(--text-color);
 }
 
+/* ==========================================================================
+   FLASHCARDS
+   ========================================================================== */
+
 #cardsDiv {
     display: flex;
     flex-direction: column;
@@ -129,7 +152,13 @@ body {
     }
 }
 
-.bottom {
+/* Manual dark mode hover override */
+[data-theme="dark"] .card:hover {
+    box-shadow: none;
+    border-color: var(--secondary-text-color);
+}
+
+.card .bottom {
     width: 480px;
     display: flex;
     flex-direction: row;
@@ -138,12 +167,12 @@ body {
     height: 30px;
 }
 
-.left {
+.card .left {
     display: flex;
     align-items: center;
 }
 
-.right {
+.card .right {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -157,11 +186,9 @@ body {
     white-space: nowrap;
 }
 
-.flat-button {
-    border: none;
-    padding: 0;
-    background: none;
-}
+/* ==========================================================================
+   ICONS
+   ========================================================================== */
 
 .icon {
     width: 25px;
@@ -177,37 +204,24 @@ body {
     transform: scale(1.1);
 }
 
-th {
-    text-align: left;
-}
-th, td {
-    padding: 5px 20px 5px 0;
+.rule-row .icon {
+    width: 20px;
+    height: 20px;
 }
 
-textarea{
-    margin: 10px 0px;
+.chevron {
+    font-size: 12px;
+    transition: transform 0.2s ease;
+    filter: var(--icon-filter);
 }
 
-hr {
-    width: 100%;
-    border: none;
-    border-top: 1px solid var(--border-color);
-    margin: 20px 0;
+.chevron.expanded {
+    transform: rotate(-90deg);
 }
 
-.control-section {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin: 20px 0;
-}
-
-.button-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 20px;
-}
+/* ==========================================================================
+   BUTTONS & CONTROLS
+   ========================================================================== */
 
 button {
     padding: 4px 10px;
@@ -241,10 +255,17 @@ button:disabled {
     border-color: var(--border-color);
 }
 
-.button-description {
-    color: var(--secondary-text-color);
-    font-size: 14px;
-    margin: 0;
+.flat-button {
+    border: none;
+    padding: 0;
+    background: none;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
 }
 
 .button-container {
@@ -253,12 +274,22 @@ button:disabled {
     gap: 10px;
 }
 
+.button-description {
+    color: var(--secondary-text-color);
+    font-size: 14px;
+    margin: 0;
+}
+
 .status-label {
     font-size: 14px;
     font-weight: 500;
     color: var(--secondary-text-color);
     min-width: 80px;
 }
+
+/* ==========================================================================
+   SETTINGS & FORMS
+   ========================================================================== */
 
 .settings-section,
 .settings-sub-section,
@@ -278,16 +309,6 @@ button:disabled {
     color: var(--text-color);
 }
 
-.chevron {
-    font-size: 12px;
-    transition: transform 0.2s ease;
-    filter: var(--icon-filter);
-}
-
-.chevron.expanded {
-    transform: rotate(-90deg);
-}
-
 .collapsible-content {
     overflow: hidden;
     transition: all 0.3s ease;
@@ -297,32 +318,7 @@ button:disabled {
     display: none;
 }
 
-#rules_header {
-    display: grid;
-    grid-template-columns: 40px 150px 1fr 120px;
-    max-width: 1000px;
-    gap: 10px;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border-color);
-    font-weight: 500;
-    color: var(--text-color);
-}
-
-.rule-row {
-    display: grid;
-    grid-template-columns: 40px 150px 1fr 120px;
-    max-width: 1000px;
-    gap: 10px;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border-color);
-    align-items: center;
-}
-
-.rule-row .icon {
-    width: 20px;
-    height: 20px;
-}
-
+/* Form inputs */
 .rule-name-input,
 .rule-regex-input {
     padding: 4px 8px;
@@ -333,6 +329,7 @@ button:disabled {
     background-color: var(--bg-color);
     color: var(--text-color);
     outline: none;
+    width: 100%;
 }
 
 .rule-name-input:focus,
@@ -340,25 +337,8 @@ button:disabled {
     border-color: var(--secondary-text-color);
 }
 
-.rule-name-input {
-    width: 100%;
-}
-
 .rule-regex-input {
-    width: 100%;
     font-family: monospace;
-}
-
-#rules_list {
-    margin-bottom: 15px;
-}
-
-h3 {
-    margin-top: 30px;
-    margin-bottom: 10px;
-    color: var(--secondary-text-color);
-    font-size: 16px;
-    font-weight: 500;
 }
 
 #regex_text {
@@ -380,19 +360,12 @@ h3 {
     border-color: var(--secondary-text-color);
 }
 
-.rule-status {
-    font-size: 12px;
-    font-weight: 500;
-    min-height: 16px;
-}
-
-.rule-status.valid {
-    color: #2e95df;
-    font-size: 14px;
-}
-
-.rule-status.error {
-    color: #e25c2b;
+/* Form options */
+.option-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
 }
 
 .option-row input[type="checkbox"] {
@@ -422,11 +395,72 @@ h3 {
     cursor: pointer;
 }
 
-.option-row {
-    display: flex;
+/* ==========================================================================
+   RULES MANAGEMENT
+   ========================================================================== */
+
+#rules_header {
+    display: grid;
+    grid-template-columns: 40px 150px 1fr 120px;
+    max-width: 1000px;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.rule-row {
+    display: grid;
+    grid-template-columns: 40px 150px 1fr 120px;
+    max-width: 1000px;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
     align-items: center;
-    gap: 12px;
+}
+
+#rules_list {
     margin-bottom: 15px;
+}
+
+.rule-status {
+    font-size: 12px;
+    font-weight: 500;
+    min-height: 16px;
+}
+
+.rule-status.valid {
+    color: #2e95df;
+    font-size: 14px;
+}
+
+.rule-status.error {
+    color: #e25c2b;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY & UTILITIES
+   ========================================================================== */
+
+h3 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    color: var(--secondary-text-color);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+th {
+    text-align: left;
+}
+
+th, td {
+    padding: 5px 20px 5px 0;
+}
+
+textarea {
+    margin: 10px 0px;
 }
 
 .bottom-message {
